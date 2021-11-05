@@ -16,11 +16,11 @@ history = [
 
 # Create your views here.
 def index(request):
-    return render(request, "home/index.html", {
+    return render(request, "account/index.html", {
         "name": "Yeet Fourzerofour"
     })
 
 def bal(request):
-    return render(request, "home/bal.html", {
+    return render(request, "account/bal.html", {
         "history": history
     })
