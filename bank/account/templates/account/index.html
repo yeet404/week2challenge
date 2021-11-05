@@ -3,4 +3,5 @@
 {% block body %}
     <h1>Hi there, {{ name }}.</h1>
     <a href="{% url 'account:bal' %}">View balance.</a>
+    <a href="{% url 'account:transaction' %}">Withdraw/Deposit.</a>
 {% endblock %}

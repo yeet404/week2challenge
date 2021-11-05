@@ -24,3 +24,6 @@ def bal(request):
     return render(request, "account/bal.html", {
         "history": history
     })
+
+def transaction(request):
+    return render(request, "account/transaction.html")

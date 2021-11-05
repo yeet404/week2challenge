@@ -1,0 +1,7 @@
+{% extends "account/layout.html" %}
+
+{% block body %}
+    <h1>test</h1>
+    <a href="{% url 'account:index' %}">Back to index.</a>
+    <a href="{% url 'account:bal' %}">Check balance.</a>
+{% endblock %}
