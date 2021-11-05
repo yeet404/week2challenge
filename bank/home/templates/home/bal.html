@@ -1,0 +1,17 @@
+{% extends "home/layout.html" %}
+
+{% block body %}
+    <h1>Your Balance</h1>
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Amount</th>
+        </tr>
+        {% for transaction in history %}
+            <tr>
+                <td>{{ transaction.0 }}</td>
+                <td>{{ transaction.1 }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
