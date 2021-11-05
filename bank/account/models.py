@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class History(models.Model):
+class Transaction(models.Model):
     transaction_type = models.CharField(max_length=8)
     amount = models.IntegerField()
 
