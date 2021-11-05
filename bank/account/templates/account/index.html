@@ -2,6 +2,17 @@
 
 {% block body %}
     <h1>Hi there, {{ name }}.</h1>
-    <a href="{% url 'account:bal' %}">View balance.</a>
-    <a href="{% url 'account:transaction' %}">Withdraw/Deposit.</a>
+    <h2>Your Balance</h2>
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Amount</th>
+        </tr>
+        {% for transaction in history %}
+            <tr>
+                <td>{{ transaction.0 }}</td>
+                <td>{{ transaction.1 }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

@@ -17,13 +17,22 @@ history = [
 # Create your views here.
 def index(request):
     return render(request, "account/index.html", {
-        "name": "Yeet Fourzerofour"
+        "name": "Yeet Fourzerofour",
+        "history": history
     })
 
+"""
 def bal(request):
     return render(request, "account/bal.html", {
         "history": history
     })
+"""
 
 def transaction(request):
+    if request.method == "POST":
+        transaction = (request.POST["transaction-type"], int(request.POST["money"]))
+        history.append(transaction)
+        return render(request, "account/transaction.html", {
+            "message": "Transaction completed successfully"
+        })
     return render(request, "account/transaction.html")
