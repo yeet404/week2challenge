@@ -20,6 +20,7 @@ from . import views
 app_name = "bank"
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include("accounts.urls"), name="acc"),
     path('', views.index),
-    path('user/', include("user.urls"), name="acc")
+    path('user/', include("user.urls"), name="user")
 ]
