@@ -7,17 +7,28 @@ from .models import Transaction
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
-        user_transactions = Transaction.objects.filter(user=request.user)
-        balance = sum(user_transactions.values_list('amount', flat=True))
+        deposits = Transaction.objects.filter(transaction_type="DEPOSIT", user=request.user)
+        withdrawals = Transaction.objects.filter(transaction_type="WITHDRAW", user=request.user)
+        balance = sum(deposits.values_list('amount', flat=True)) - sum(withdrawals.values_list('amount', flat=True))
         return render(request, "user/index.html", {
-            "transactions": user_transactions,
+            "transactions": Transaction.objects.filter(user=request.user),
             "balance": balance
         })
     return HttpResponseRedirect(reverse("accounts:login"))
 
 def transaction(request):
     if request.method == "POST":
-        t = Transaction(transaction_type=request.POST["transaction-type"], amount=request.POST["money"], user=request.user)
+        # there's prob a better way to implement my bal check to reduce redundant code but idk lol
+        deposits = Transaction.objects.filter(transaction_type="DEPOSIT", user=request.user)
+        withdrawals = Transaction.objects.filter(transaction_type="WITHDRAW", user=request.user)
+        balance = sum(deposits.values_list('amount', flat=True)) - sum(withdrawals.values_list('amount', flat=True))
+        t_type = request.POST["transaction-type"]
+        amt = int(request.POST["money"])
+        if t_type == "WITHDRAW" and balance - amt < 0:
+            return render(request, "user/transaction.html", {
+            "message": "Insufficient funds"
+        })
+        t = Transaction(transaction_type=t_type, amount=amt, user=request.user)
         t.save()
         return render(request, "user/transaction.html", {
             "message": "Transaction completed successfully"
