@@ -1,5 +1,6 @@
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from .models import Transaction
 
 history = [
     ("withdraw", 2345),
@@ -18,7 +19,7 @@ history = [
 def index(request):
     return render(request, "account/index.html", {
         "name": "Yeet Fourzerofour",
-        "history": history
+        "transactions": Transaction.objects.all() 
     })
 
 """
