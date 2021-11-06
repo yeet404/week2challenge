@@ -1,5 +1,6 @@
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 from .models import Transaction
 
 history = [
@@ -17,17 +18,12 @@ history = [
 
 # Create your views here.
 def index(request):
-    return render(request, "user/index.html", {
-        "name": "Yeet Fourzerofour",
-        "transactions": Transaction.objects.all() 
-    })
-
-"""
-def bal(request):
-    return render(request, "account/bal.html", {
-        "history": history
-    })
-"""
+    if request.user.is_authenticated:
+        return render(request, "user/index.html", {
+            "name": "Yeet Fourzerofour",
+            "transactions": Transaction.objects.all() 
+        })
+    return HttpResponseRedirect(reverse("accounts:login"))
 
 def transaction(request):
     if request.method == "POST":
