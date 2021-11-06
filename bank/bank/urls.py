@@ -21,5 +21,5 @@ app_name = "bank"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
-    path('account/', include("account.urls"), name="acc")
+    path('user/', include("user.urls"), name="acc")
 ]

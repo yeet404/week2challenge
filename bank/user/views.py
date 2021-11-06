@@ -17,7 +17,7 @@ history = [
 
 # Create your views here.
 def index(request):
-    return render(request, "account/index.html", {
+    return render(request, "user/index.html", {
         "name": "Yeet Fourzerofour",
         "transactions": Transaction.objects.all() 
     })
@@ -33,7 +33,7 @@ def transaction(request):
     if request.method == "POST":
         transaction = (request.POST["transaction-type"], int(request.POST["money"]))
         history.append(transaction)
-        return render(request, "account/transaction.html", {
+        return render(request, "user/transaction.html", {
             "message": "Transaction completed successfully"
         })
-    return render(request, "account/transaction.html")
+    return render(request, "user/transaction.html")

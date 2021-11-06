@@ -1,4 +1,4 @@
-{% extends "account/layout.html" %}
+{% extends "user/layout.html" %}
 
 {% block body %}
     <h1>Make transaction</h1>
@@ -7,7 +7,7 @@
         <p>{{ message }}</p>
     {% endif %}
 
-    <form action="{% url 'account:transaction' %}" method="post">
+    <form action="{% url 'user:transaction' %}" method="post">
         
         {% csrf_token %}
         <input type="text" name="money">
