@@ -1,8 +1,9 @@
 {% extends "user/layout.html" %}
 
 {% block body %}
-    <h1>Hi there, {{ name }}.</h1>
+    <h1>Hi there, {{ request.user }}.</h1>
     <h2>Your Balance</h2>
+    <p>{{ balance }}</p>
     <table>
         <tr>
             <th>Type</th>
@@ -12,9 +13,11 @@
             <tr>
                 <td>{{ transaction.transaction_type }}</td>
                 <td>{{ transaction.amount }}</td>
+                <td>{{ transaction.user }}</td>
             </tr>
         {% endfor %}
     </table>
 
+    <a href="{% url 'user:transaction' %}">Make transaction</a>
     <a href="{% url 'accounts:logout' %}">Log out.</a>
 {% endblock %}

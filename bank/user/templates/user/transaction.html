@@ -12,9 +12,11 @@
         {% csrf_token %}
         <input type="text" name="money">
         <select name="transaction-type">
-            <option value="withdraw">Withdraw</option>
-            <option value="deposit">Deposit</option>
+            <option value="WITHDRAW">Withdraw</option>
+            <option value="DEPOSIT">Deposit</option>
         </select>
         <input type="submit">
     </form>
+
+    <a href="{% url 'user:index' %}">Back to index.</a>
 {% endblock %}
