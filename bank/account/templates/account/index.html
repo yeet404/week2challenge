@@ -8,10 +8,10 @@
             <th>Type</th>
             <th>Amount</th>
         </tr>
-        {% for transaction in history %}
+        {% for transaction in transactions %}
             <tr>
-                <td>{{ transaction.0 }}</td>
-                <td>{{ transaction.1 }}</td>
+                <td>{{ transaction.transaction_type }}</td>
+                <td>{{ transaction.amount }}</td>
             </tr>
         {% endfor %}
     </table>
