@@ -56,4 +56,4 @@ yeet
 - p: yeet1234567890
 
 I forgor to add a `.gitignore` 💀. 
-I honestly have no clue what impact (if any) the pychache files have, and I figured that include my premade database saves the hassle of running the migration commands (assuming everything went well)
+I honestly have no clue what impact (if any) the pychache files have, and I figured that including my premade database saves you the hassle of running the migration commands anyways (assuming everything went well)
