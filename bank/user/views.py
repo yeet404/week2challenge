@@ -22,9 +22,14 @@ def transaction(request):
         # there's prob a better way to implement my bal check to reduce redundant code but idk lol
         deposits = Transaction.objects.filter(transaction_type="DEPOSIT", user=request.user)
         withdrawals = Transaction.objects.filter(transaction_type="WITHDRAW", user=request.user)
-        balance = sum(deposits.values_list('amount', flat=True)) - sum(withdrawals.values_list('amount', flat=True))
+        try:
+            balance = float(sum(deposits.values_list('amount', flat=True)) - sum(withdrawals.values_list('amount', flat=True)))
+            amt = float(request.POST["money"])
+        except ValueError:
+            return render(request, "user/transaction.html", {
+            "message": "Invalid entry."
+        })
         t_type = request.POST["transaction-type"]
-        amt = int(request.POST["money"])
         if t_type == "WITHDRAW" and balance - amt < 0:
             return render(request, "user/transaction.html", {
             "message": "Insufficient funds"

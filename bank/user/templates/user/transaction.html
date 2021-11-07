@@ -1,6 +1,13 @@
 {% extends "user/layout.html" %}
 
 {% block body %}
+    <!--<script>
+        // credit: https://stackoverflow.com/a/34058008
+        function setTwoDecimalPlaces(event) {
+            this.value = parseFloat(this.value).toFixed(2);
+        }
+    </script>-->
+
     <h1>Make transaction</h1>
 
     {% if message %}
@@ -10,7 +17,7 @@
     <form action="{% url 'user:transaction' %}" method="post">
         
         {% csrf_token %}
-        <input type="text" name="money">
+        <input type="number" min="0" max="1.84467441e19" step=".01" value="0.00" onchange="setTwoDecimalPlaces" name="money">
         <select name="transaction-type">
             <option value="WITHDRAW">Withdraw</option>
             <option value="DEPOSIT">Deposit</option>
