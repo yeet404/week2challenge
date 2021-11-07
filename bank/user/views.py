@@ -3,6 +3,7 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .models import Transaction
+from django.utils import timezone
 
 # Create your views here.
 def index(request):
@@ -28,7 +29,7 @@ def transaction(request):
             return render(request, "user/transaction.html", {
             "message": "Insufficient funds"
         })
-        t = Transaction(transaction_type=t_type, amount=amt, user=request.user)
+        t = Transaction(transaction_type=t_type, amount=amt, user=request.user, date=timezone.now())
         t.save()
         return render(request, "user/transaction.html", {
             "message": "Transaction completed successfully"

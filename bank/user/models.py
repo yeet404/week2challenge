@@ -6,6 +6,7 @@ class Transaction(models.Model):
     transaction_type = models.CharField(max_length=8)
     amount = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="transaction_maker", null=True)
+    date=models.DateTimeField()
 
     def __str__(self):
-        return f"({self.user}) {self.transaction_type}: ${self.amount}"
+        return f"({self.user}) {self.transaction_type}: ${self.amount} at {self.date}"

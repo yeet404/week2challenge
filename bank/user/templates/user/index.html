@@ -8,11 +8,13 @@
         <tr>
             <th>Type</th>
             <th>Amount</th>
+            <th>Date</th>
         </tr>
         {% for transaction in transactions %}
             <tr>
                 <td>{{ transaction.transaction_type }}</td>
                 <td>${{ transaction.amount }}</td>
+                <td>{{ transaction.date }}</td>
             </tr>
         {% endfor %}
     </table>
