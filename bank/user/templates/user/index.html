@@ -4,6 +4,7 @@
     <h1>Hi there, {{ request.user }}.</h1>
     <h2>Your Balance</h2>
     <p>${{ balance }}</p>
+    <h2>Transaction History</h2>
     <table>
         <tr>
             <th>Type</th>
@@ -15,6 +16,10 @@
                 <td>{{ transaction.transaction_type }}</td>
                 <td>${{ transaction.amount }}</td>
                 <td>{{ transaction.date }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td>No previous transactions</td>
             </tr>
         {% endfor %}
     </table>
